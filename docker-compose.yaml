@@ -1,0 +1,41 @@
+version: '3'
+services:
+
+  file-writer:
+    container_name: file-writer
+    command:
+      - sh
+      - -c
+      - echo $${FILE_CONTENTS} > /output/example.txt
+    environment:
+      FILE_CONTENTS: |
+        This is a
+        three-line
+        file.
+    image: busybox:${SENZING_DOCKER_IMAGE_VERSION_BUSYBOX:-latest}
+    networks:
+      - senzing
+    read_only: true
+    user: ${SENZING_UID:-1001}:${SENZING_GID:-1001}
+    volumes:
+      - ${EXTERNAL_DIR:-/tmp}:/output
+
+  file-reader:
+    container_name: file-reader
+    command:
+      - sh
+      - -c
+      - sleep 1; cat /input/example.txt;
+    depends_on:
+      - file-writer
+    image: busybox:${SENZING_DOCKER_IMAGE_VERSION_BUSYBOX:-latest}
+    networks:
+      - senzing
+    read_only: true
+    user: ${SENZING_UID:-1001}:${SENZING_GID:-1001}
+    volumes:
+      - ${EXTERNAL_DIR:-/tmp}:/input
+
+networks:
+  senzing:
+    name: ${SENZING_DOCKER_NETWORK:-senzing-network}
