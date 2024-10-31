@@ -16,9 +16,8 @@ services:
     networks:
       - senzing
     read_only: true
-    user: ${SENZING_UID:-1001}:${SENZING_GID:-1001}
     volumes:
-      - ${EXTERNAL_DIR:-/tmp}:/output
+      - senzing-output:/output
 
   file-reader:
     container_name: file-reader
@@ -32,10 +31,12 @@ services:
     networks:
       - senzing
     read_only: true
-    user: ${SENZING_UID:-1001}:${SENZING_GID:-1001}
     volumes:
-      - ${EXTERNAL_DIR:-/tmp}:/input
+      - senzing-output:/input
 
 networks:
   senzing:
     name: ${SENZING_DOCKER_NETWORK:-senzing-network}
+
+volumes:
+  senzing-output:
