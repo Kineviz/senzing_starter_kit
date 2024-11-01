@@ -1,5 +1,4 @@
-ARG BASE_IMAGE=ubuntu
-FROM ${BASE_IMAGE} AS runner
+FROM ubuntu
 
 ENV REFRESHED_AT=2024-11-01
 
