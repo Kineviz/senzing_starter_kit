@@ -81,9 +81,14 @@ COPY ./rootfs /
 
 COPY --from=builder /app/venv /app/venv
 
+# Make output directory.
+
+RUN mkdir /output \
+ && chmod -R 777 /output
+
 # Make non-root container.
 
-USER 1001
+# USER 1001
 
 # Activate virtual environment.
 

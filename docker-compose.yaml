@@ -6,22 +6,20 @@ services:
     image: senzing/senzing_starter_kit
     networks:
       - senzing
-    read_only: true
     volumes:
-      - senzing-output:/export
+      - senzing-output:/output:rw
 
   file-reader:
     container_name: file-reader
     command:
       - sh
       - -c
-      - sleep 1; ls /input/;
+      - sleep 15; ls /input/;
     depends_on:
       - file-writer
     image: busybox:${SENZING_DOCKER_IMAGE_VERSION_BUSYBOX:-latest}
     networks:
       - senzing
-    read_only: true
     volumes:
       - senzing-output:/input
 
