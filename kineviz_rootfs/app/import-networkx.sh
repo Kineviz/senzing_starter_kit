@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
-
 # Wait until files appear.
 
 until [ -f /input/demo_senzing_graph.json ]
@@ -18,8 +16,8 @@ done
 
 # Print files.
 
-echo "Contents of /input/demo_senzing_graph.json"
-cat /input/demo_senzing_graph.json
+echo "First 10 lines of /input/demo_senzing_graph.json"
+head -10 /input/demo_senzing_graph.json
 
-echo "Contents of /input/demo_source_graph.json"
-cat /input/demo_source_graph.json
+echo "First 10 lines of /input/demo_source_graph.json"
+head -10 /input/demo_source_graph.json
