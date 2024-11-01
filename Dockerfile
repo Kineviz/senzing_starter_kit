@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=senzing/senzingapi-runtime:3.12.0
+ARG BASE_IMAGE=senzing/senzingapi-tools:3.12.0
 
 # -----------------------------------------------------------------------------
 # Stage: builder
@@ -92,5 +92,8 @@ ENV PATH="/app/venv/bin:${PATH}"
 
 # Runtime execution.
 
+ENV SENZING_ENGINE_CONFIGURATION_JSON='{"PIPELINE": {"CONFIGPATH": "/etc/opt/senzing", "LICENSESTRINGBASE64": "", "RESOURCEPATH": "/opt/senzing/er/resources", "SUPPORTPATH": "/opt/senzing/data"}, "SQL": {"CONNECTION": "sqlite3://na:na@/var/senzing/sqlite/G2C.db"}}'
+
+
 WORKDIR /app
-ENTRYPOINT ["/app/sz_graph_export.py"]
+ENTRYPOINT ["/app/export-networkx.sh"]
