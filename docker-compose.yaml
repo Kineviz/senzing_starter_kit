@@ -5,7 +5,6 @@ services:
     build:
         context: .
         dockerfile: senzing.Dockerfile
-    image: senzing/senzing_starter_kit
     volumes:
       - senzing-output:/output
 
