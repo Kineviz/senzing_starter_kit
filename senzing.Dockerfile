@@ -6,7 +6,7 @@ ARG BASE_IMAGE=senzing/senzingapi-tools:3.12.0
 
 FROM ${BASE_IMAGE} AS builder
 
-ENV REFRESHED_AT=2024-10-30
+ENV REFRESHED_AT=2024-11-01
 
 # Run as "root" for system installation.
 
@@ -45,7 +45,7 @@ RUN pip3 install --upgrade pip \
 
 FROM ${BASE_IMAGE} AS runner
 
-ENV REFRESHED_AT=2024-06-24
+ENV REFRESHED_AT=2024-11-01
 
 LABEL Name="senzing/starter-kit" \
   Maintainer="support@senzing.com" \
@@ -75,7 +75,7 @@ RUN apt-get update \
 
 # Copy files from repository.
 
-COPY ./rootfs /
+COPY ./senzing_rootfs /
 
 # Copy python virtual environment from the builder image.
 

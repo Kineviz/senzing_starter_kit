@@ -1,31 +1,20 @@
 version: '3'
 services:
 
-  file-writer:
-    container_name: file-writer
+  senzing:
+    build:
+        context: .
+        dockerfile: senzing.Dockerfile
     image: senzing/senzing_starter_kit
-    networks:
-      - senzing
     volumes:
-      - senzing-output:/output:rw
+      - senzing-output:/output
 
-  file-reader:
-    container_name: file-reader
-    command:
-      - sh
-      - -c
-      - sleep 15; ls /input/;
-    depends_on:
-      - file-writer
-    image: busybox:${SENZING_DOCKER_IMAGE_VERSION_BUSYBOX:-latest}
-    networks:
-      - senzing
+  kineviz:
+    build:
+        context: .
+        dockerfile: kineviz.Dockerfile
     volumes:
       - senzing-output:/input
-
-networks:
-  senzing:
-    name: ${SENZING_DOCKER_NETWORK:-senzing-network}
 
 volumes:
   senzing-output:
