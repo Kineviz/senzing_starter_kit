@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  senzing:
+    build:
+        context: .
+        dockerfile: senzing.Dockerfile
+    volumes:
+      - senzing-output:/output
+
+  kineviz:
+    build:
+        context: .
+        dockerfile: kineviz.Dockerfile
+    volumes:
+      - senzing-output:/input
+
+volumes:
+  senzing-output:

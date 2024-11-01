@@ -12,6 +12,7 @@ import sys
 import textwrap
 import time
 from datetime import datetime
+
 from senzing import (
     G2BadInputException,
     G2ConfigMgr,
@@ -477,7 +478,8 @@ if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser(
         allow_abbrev=False,
         description="Utility to load Senzing JSON records and process redo records",
-        epilog=textwrap.dedent("""\
+        epilog=textwrap.dedent(
+            """\
                  Arguments can be specified with either CLI arguments or environment variables, some arguments have
                  default values.
 
@@ -489,7 +491,8 @@ if __name__ == "__main__":
 
                  For additional help and information: https://github.com/senzing-garage/file-loader/blob/main/README.md
 
-               """),
+               """
+        ),
         formatter_class=argparse.RawTextHelpFormatter,
     )
 
@@ -500,13 +503,15 @@ if __name__ == "__main__":
         default=None,
         metavar="file",
         nargs="?",
-        help=textwrap.dedent("""\
+        help=textwrap.dedent(
+            """\
                Path and name of file to load.
 
                Default: None, must be specified.
                Env Var: SENZING_INPUT_FILE
 
-             """),
+             """
+        ),
     )
     arg_parser.add_argument(
         "-cj",
@@ -516,13 +521,15 @@ if __name__ == "__main__":
         metavar="config",
         nargs="?",
         type=str,
-        help=textwrap.dedent("""\
+        help=textwrap.dedent(
+            """\
                JSON string of the Senzing engine configuration.
 
                Default: None, must be specified.
                Env Var: SENZING_ENGINE_CONFIGURATION_JSON
 
-             """),
+             """
+        ),
     )
     arg_parser.add_argument(
         "-i",
@@ -530,13 +537,15 @@ if __name__ == "__main__":
         action=CustomArgActionStoreTrue,
         default=False,
         nargs=0,
-        help=textwrap.dedent("""\
+        help=textwrap.dedent(
+            """\
                Produce withInfo messages and write to a file
 
                Default: False
                Env Var: SENZING_WITHINFO
 
-             """),
+             """
+        ),
     )
     arg_parser.add_argument(
         "-t",
@@ -544,13 +553,15 @@ if __name__ == "__main__":
         action=CustomArgActionStoreTrue,
         default=False,
         nargs=0,
-        help=textwrap.dedent("""\
+        help=textwrap.dedent(
+            """\
                Output debug trace information.
 
                Default: False
                Env Var: SENZING_DEBUG
 
-             """),
+             """
+        ),
     )
     arg_parser.add_argument(
         "-nt",
@@ -559,13 +570,15 @@ if __name__ == "__main__":
         default=0,
         metavar="num_threads",
         type=int,
-        help=textwrap.dedent("""\
+        help=textwrap.dedent(
+            """\
                Total number of worker threads performing load.
 
                Default: Calculated based on hardware.
                Env Var: SENZING_THREADS_PER_PROCESS
 
-             """),
+             """
+        ),
     )
     cli_args = arg_parser.parse_args()
 
