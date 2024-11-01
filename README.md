@@ -11,6 +11,12 @@ This project illustrates using open data with both Kineviz and Senzing.
     docker-compose up
     ```
 
+1. To stop the docker-compose formation, run:
+
+    ```console
+    docker-compose down -v
+    ```
+
 ## References
 
 1. [Development notes](docs)
